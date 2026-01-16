@@ -36,14 +36,28 @@
 .card {
   width: 100%;
   max-width: 450px;
-  background: var(--color-primary-dark-gray);
-  border: 1px solid var(--color-neutral-border);
+  background: linear-gradient(135deg, rgba(45, 45, 45, 0.95) 0%, rgba(26, 26, 26, 0.95) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.2);
   border-radius: var(--radius-xl);
   padding: var(--spacing-3xl);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7),
+              0 0 80px rgba(212, 175, 55, 0.15),
+              inset 0 1px 0 rgba(212, 175, 55, 0.1);
+  backdrop-filter: blur(20px);
   position: relative;
   z-index: 1;
   animation: slideUp 0.5s ease-out;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--color-accent-gold), transparent);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
 }
 
 @keyframes slideUp {
@@ -65,11 +79,19 @@
 .logo {
   font-size: 2.5rem;
   font-weight: 700;
-  background: linear-gradient(135deg, var(--color-accent-gold), var(--color-accent-gold-hover));
+  background: linear-gradient(135deg, var(--color-accent-gold), var(--color-accent-gold-hover), var(--color-accent-gold));
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-bottom: var(--spacing-sm);
+  animation: shimmer 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3));
+}
+
+@keyframes shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 .subtitle {
@@ -128,11 +150,28 @@
 }
 
 .demoInfo {
-  background: rgba(212, 175, 55, 0.1);
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(212, 175, 55, 0.03) 100%);
   border: 1px solid var(--color-accent-gold);
   border-radius: var(--radius-md);
   padding: var(--spacing-md);
   margin-top: var(--spacing-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.demoInfo::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent 30%, rgba(212, 175, 55, 0.1) 50%, transparent 70%);
+  animation: rotate 4s linear infinite;
+}
+
+@keyframes rotate {
+  100% { transform: rotate(360deg); }
 }
 
 .demoTitle {

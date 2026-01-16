@@ -1,30 +1,59 @@
 /* Card Component - Container premium */
 
 .card {
-  background: var(--color-primary-dark-gray);
+  background: linear-gradient(135deg, rgba(45, 45, 45, 0.8) 0%, rgba(35, 35, 35, 0.8) 100%);
   border: 1px solid var(--color-neutral-border);
   border-radius: var(--radius-lg);
   padding: var(--spacing-xl);
   transition: all var(--transition-base);
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(10px);
 }
 
 .card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(90deg, 
+    transparent,
+    var(--color-accent-gold),
+    transparent
+  );
+  border-radius: var(--radius-lg);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  z-index: -1;
+}
+
+.card::after {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--color-accent-gold), var(--color-accent-gold-hover));
+  background: linear-gradient(90deg, transparent, var(--color-accent-gold), transparent);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform var(--transition-base);
 }
 
 .card:hover::before {
+  opacity: 1;
+  animation: borderGlow 2s linear infinite;
+}
+
+.card:hover::after {
   transform: scaleX(1);
+}
+
+@keyframes borderGlow {
+  0%, 100% { filter: blur(5px) brightness(1); }
+  50% { filter: blur(8px) brightness(1.2); }
 }
 
 /* Variantes */

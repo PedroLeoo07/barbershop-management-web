@@ -9,27 +9,50 @@
 /* Sidebar */
 .sidebar {
   width: 280px;
-  background: var(--color-primary-dark-gray);
-  border-right: 1px solid var(--color-neutral-border);
+  background: linear-gradient(180deg, rgba(26, 26, 26, 0.95) 0%, rgba(20, 20, 20, 0.95) 100%);
+  border-right: 1px solid rgba(212, 175, 55, 0.2);
   display: flex;
   flex-direction: column;
   position: fixed;
   height: 100vh;
   z-index: 100;
+  backdrop-filter: blur(20px);
+  box-shadow: 4px 0 30px rgba(0, 0, 0, 0.5),
+              inset -1px 0 0 rgba(212, 175, 55, 0.1);
 }
 
 .sidebarHeader {
   padding: var(--spacing-xl);
-  border-bottom: 1px solid var(--color-neutral-border);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, transparent 100%);
+  position: relative;
+}
+
+.sidebarHeader::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-accent-gold), transparent);
 }
 
 .logo {
   font-size: 1.5rem;
   font-weight: 700;
-  background: linear-gradient(135deg, var(--color-accent-gold), var(--color-accent-gold-hover));
+  background: linear-gradient(135deg, var(--color-accent-gold), var(--color-accent-gold-hover), var(--color-accent-gold));
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: shimmerLogo 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.3));
+}
+
+@keyframes shimmerLogo {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 .nav {
@@ -63,18 +86,41 @@
   margin-bottom: var(--spacing-xs);
   text-decoration: none;
   font-size: 0.9375rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.navLink::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--color-accent-gold);
+  transform: scaleY(0);
+  transition: transform var(--transition-fast);
 }
 
 .navLink:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: linear-gradient(90deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.05) 100%);
   color: var(--color-accent-gold);
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.15);
+}
+
+.navLink:hover::before {
+  transform: scaleY(1);
 }
 
 .navLinkActive {
-  background: linear-gradient(90deg, rgba(212, 175, 55, 0.15), transparent);
+  background: linear-gradient(90deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.1) 100%);
   color: var(--color-accent-gold);
   border-left: 3px solid var(--color-accent-gold);
   padding-left: calc(var(--spacing-md) - 3px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2),
+              inset 0 1px 0 rgba(212, 175, 55, 0.3);
+  font-weight: 600;
 }
 
 .sidebarFooter {
@@ -87,21 +133,25 @@
   align-items: center;
   gap: var(--spacing-md);
   padding: var(--spacing-md);
-  background: rgba(255, 255, 255, 0.05);
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
   border-radius: var(--radius-md);
   margin-bottom: var(--spacing-md);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.1);
 }
 
 .avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--color-accent-gold);
+  background: linear-gradient(135deg, var(--color-accent-gold), var(--color-accent-gold-hover));
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 600;
   color: var(--color-primary-graphite);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4),
+              inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .userDetails {
@@ -128,12 +178,15 @@
 }
 
 .header {
-  background: var(--color-primary-dark-gray);
-  border-bottom: 1px solid var(--color-neutral-border);
+  background: linear-gradient(135deg, rgba(45, 45, 45, 0.95) 0%, rgba(35, 35, 35, 0.95) 100%);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
   padding: var(--spacing-xl);
   position: sticky;
   top: 0;
   z-index: 50;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3),
+              inset 0 -1px 0 rgba(212, 175, 55, 0.1);
 }
 
 .headerContent {
