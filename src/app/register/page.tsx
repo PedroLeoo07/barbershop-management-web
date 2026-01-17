@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';
-import { BackButton } from '@/components/BackButton';
 import styles from '../login/page.module.css';
 
 export default function RegisterPage() {
@@ -63,7 +62,6 @@ export default function RegisterPage() {
   return (
     <div className={styles.container}>
       <div className={styles.card}>
-        <BackButton />
         <div className={styles.header}>
           <h1 className={styles.logo}>BarberShop</h1>
           <p className={styles.subtitle}>Crie sua conta</p>
