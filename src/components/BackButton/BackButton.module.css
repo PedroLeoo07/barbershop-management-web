@@ -1,0 +1,29 @@
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 16px;
+}
+
+.backButton:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+}
+
+.backButton:active {
+  transform: scale(0.98);
+}
+
+.backButton svg {
+  width: 20px;
+  height: 20px;
+}
