@@ -7,6 +7,7 @@ import { Appointment } from '@/types';
 import { Card, CardHeader, CardContent } from '@/components/Card';
 import { Button } from '@/components/Button';
 import { Loading } from '@/components/Loading';
+import { BackButton } from '@/components/BackButton';
 import styles from './page.module.css';
 
 export default function HistoryPage() {
@@ -69,6 +70,7 @@ export default function HistoryPage() {
 
   return (
     <div className={styles.container}>
+      <BackButton />
       <h1 className={styles.title}>Histórico de Agendamentos</h1>
       <p className={styles.subtitle}>Todos os seus agendamentos</p>
 

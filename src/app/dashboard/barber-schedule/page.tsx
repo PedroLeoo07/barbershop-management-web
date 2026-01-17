@@ -8,6 +8,7 @@ import { Appointment } from '@/types';
 import Card from '@/components/Card/Card';
 import Button from '@/components/Button/Button';
 import Loading from '@/components/Loading/Loading';
+import { BackButton } from '@/components/BackButton';
 import styles from './page.module.css';
 
 export default function BarberSchedulePage() {
@@ -89,6 +90,7 @@ export default function BarberSchedulePage() {
 
   return (
     <div className={styles.container}>
+      <BackButton />
       <div className={styles.header}>
         <div>
           <h1 className={styles.title}>Minha Agenda</h1>

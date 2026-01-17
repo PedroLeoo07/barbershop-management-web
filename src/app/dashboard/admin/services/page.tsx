@@ -8,6 +8,7 @@ import { Button } from '@/components/Button';
 import { Input, Textarea } from '@/components/Input';
 import { Modal } from '@/components/Modal';
 import { Loading } from '@/components/Loading';
+import { BackButton } from '@/components/BackButton';
 import styles from './page.module.css';
 
 export default function AdminServicesPage() {
@@ -100,6 +101,7 @@ export default function AdminServicesPage() {
 
   return (
     <div className={styles.container}>
+      <BackButton />
       <div className={styles.header}>
         <div>
           <h1 className={styles.title}>Serviços</h1>
