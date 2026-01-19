@@ -17,3 +17,10 @@ export { Loading, LoadingDots, Skeleton, SkeletonText, SkeletonTitle, SkeletonCa
 export type { LoadingProps } from './Loading';
 
 export { BackButton } from './BackButton';
+
+// New Components
+export { RatingStars } from './RatingStars';
+
+export { Badge, PaymentStatusBadge, AppointmentStatusBadge, StockStatusBadge } from './Badge';
+export type { BadgeVariant, BadgeSize } from './Badge';
+
