@@ -42,6 +42,7 @@ export default function DashboardPage() {
       section: 'Barbeiro',
       items: [
         { label: 'Minha Agenda', href: '/dashboard/barber-schedule', icon: '🗓️' },
+        { label: 'Meus Pagamentos', href: '/dashboard/barber-payments', icon: '💰' },
       ],
     });
   }
@@ -53,6 +54,8 @@ export default function DashboardPage() {
         { label: 'Serviços', href: '/dashboard/admin/services', icon: '✂️' },
         { label: 'Barbeiros', href: '/dashboard/admin/barbers', icon: '👨‍💼' },
         { label: 'Horários', href: '/dashboard/admin/schedules', icon: '⏰' },
+        { label: 'Pagamentos', href: '/dashboard/admin/payments', icon: '💰' },
+        { label: 'Relatórios', href: '/dashboard/admin/reports', icon: '📊' },
       ],
     });
   }
