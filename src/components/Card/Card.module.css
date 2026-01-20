@@ -1,79 +1,98 @@
-/* Card Component - Container premium */
+/* Card Premium - Container com efeito de vidro */
 
 .card {
-  background: linear-gradient(135deg, rgba(45, 45, 45, 0.8) 0%, rgba(35, 35, 35, 0.8) 100%);
-  border: 1px solid var(--color-neutral-border);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-xl);
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(20, 20, 20, 0.98) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-2xl);
   transition: all var(--transition-base);
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .card::before {
   content: '';
   position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(90deg, 
-    transparent,
-    var(--color-accent-gold),
-    transparent
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(212, 175, 55, 0.03) 0%,
+    transparent 50%,
+    rgba(205, 127, 50, 0.03) 100%
   );
-  border-radius: var(--radius-lg);
   opacity: 0;
   transition: opacity var(--transition-base);
-  z-index: -1;
+  pointer-events: none;
 }
 
 .card::after {
   content: '';
   position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, var(--color-accent-gold), transparent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform var(--transition-base);
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(212, 175, 55, 0.1),
+    transparent
+  );
+  transition: left 0.7s;
+  pointer-events: none;
 }
 
 .card:hover::before {
   opacity: 1;
-  animation: borderGlow 2s linear infinite;
 }
 
 .card:hover::after {
-  transform: scaleX(1);
+  left: 100%;
 }
 
-@keyframes borderGlow {
-  0%, 100% { filter: blur(5px) brightness(1); }
-  50% { filter: blur(8px) brightness(1.2); }
-}
-
-/* Variantes */
+/* Variantes Premium */
 .elevated {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.5),
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .elevated:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transform: translateY(-6px);
+  box-shadow: 
+    0 16px 40px rgba(0, 0, 0, 0.6),
+    0 4px 16px rgba(212, 175, 55, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  border-color: rgba(212, 175, 55, 0.3);
 }
 
 .outlined {
-  border: 2px solid var(--color-neutral-border);
+  border: 2px solid rgba(212, 175, 55, 0.2);
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.7) 0%, rgba(20, 20, 20, 0.8) 100%);
+}
+
+.outlined:hover {
+  border-color: rgba(212, 175, 55, 0.5);
+  box-shadow: 0 0 24px rgba(212, 175, 55, 0.15);
 }
 
 .flat {
   border: none;
-  background: rgba(45, 45, 45, 0.5);
-  backdrop-filter: blur(10px);
+  background: rgba(26, 26, 26, 0.6);
+  backdrop-filter: blur(16px) saturate(150%);
+  box-shadow: none;
+}
+
+.flat:hover {
+  background: rgba(26, 26, 26, 0.75);
 }
 
 /* Estados de interação */
