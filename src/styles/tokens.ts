@@ -42,20 +42,20 @@ export const colors = {
     info: '#2196F3',          // Azul Info
   },
   
-  // Overlays
+  // Overlays Premium
   overlay: {
-    dark: 'rgba(26, 26, 26, 0.9)',
-    medium: 'rgba(26, 26, 26, 0.7)',
-    light: 'rgba(26, 26, 26, 0.5)',
+    dark: 'rgba(10, 10, 10, 0.92)',
+    medium: 'rgba(10, 10, 10, 0.75)',
+    light: 'rgba(10, 10, 10, 0.5)',
   },
 } as const;
 
 export const typography = {
-  // Família de Fontes
+  // Família de Fontes Premium
   fontFamily: {
-    primary: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-    display: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-    mono: '"SF Mono", Monaco, "Cascadia Code", "Courier New", monospace',
+    primary: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+    display: '"Playfair Display", "Georgia", serif',
+    mono: '"JetBrains Mono", "SF Mono", Monaco, "Cascadia Code", monospace',
   },
   
   // Tamanhos
@@ -110,12 +110,13 @@ export const borderRadius = {
 } as const;
 
 export const shadows = {
-  sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
-  md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-  lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-  xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-  gold: '0 0 20px rgba(212, 175, 55, 0.3)',
-  inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
+  sm: '0 2px 8px rgba(0, 0, 0, 0.4)',
+  md: '0 4px 16px rgba(0, 0, 0, 0.5)',
+  lg: '0 8px 32px rgba(0, 0, 0, 0.6)',
+  xl: '0 12px 48px rgba(0, 0, 0, 0.7)',
+  gold: '0 0 24px rgba(212, 175, 55, 0.3), 0 4px 16px rgba(212, 175, 55, 0.2)',
+  goldHover: '0 0 32px rgba(212, 175, 55, 0.5), 0 8px 24px rgba(212, 175, 55, 0.3)',
+  inner: 'inset 0 2px 4px rgba(0, 0, 0, 0.2)',
 } as const;
 
 export const transitions = {
