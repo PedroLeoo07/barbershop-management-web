@@ -19,6 +19,10 @@
   white-space: nowrap;
   position: relative;
   overflow: hidden;
+  /* Hardware acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform, box-shadow;
 }
 
 .button::before {

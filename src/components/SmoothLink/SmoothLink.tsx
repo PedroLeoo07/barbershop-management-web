@@ -36,3 +36,31 @@ export function SmoothLink({
     
     // Adicionar classe de transição
     document.body.classList.add(styles.transitioning);
+
+    // Pequeno delay para animação
+    setTimeout(() => {
+      if (replace) {
+        router.replace(href, { scroll });
+      } else {
+        router.push(href, { scroll });
+      }
+      
+      // Remover classe após navegação
+      setTimeout(() => {
+        document.body.classList.remove(styles.transitioning);
+      }, 300);
+    }, 50);
+  };
+
+  return (
+    <Link 
+      href={href}
+      onClick={handleClick}
+      className={`${styles.smoothLink} ${className}`}
+      prefetch={prefetch}
+      {...props}
+    >
+      {children}
+    </Link>
+  );
+}

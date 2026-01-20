@@ -27,3 +27,4 @@ export type { BadgeVariant, BadgeSize } from './Badge';
 // Navigation & Transitions
 export { PageTransition } from './PageTransition';
 export { RouteProgress } from './RouteProgress';
+export { SmoothLink } from './SmoothLink';
