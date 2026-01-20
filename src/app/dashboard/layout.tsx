@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { Loading } from '@/components/Loading';
+import { PageTransition } from '@/components/PageTransition';
 
 export default function DashboardLayout({
   children,
@@ -27,5 +28,9 @@ export default function DashboardLayout({
     return null;
   }
 
-  return <>{children}</>;
+  return (
+    <PageTransition variant="fade">
+      {children}
+    </PageTransition>
+  );
 }
