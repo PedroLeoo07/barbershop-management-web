@@ -28,3 +28,6 @@ export type { BadgeVariant, BadgeSize } from './Badge';
 export { PageTransition } from './PageTransition';
 export { RouteProgress } from './RouteProgress';
 export { SmoothLink } from './SmoothLink';
+
+// Layout Components
+export { Container, Section, MainContent } from './Container';
