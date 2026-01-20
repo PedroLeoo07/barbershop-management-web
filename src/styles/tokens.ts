@@ -1,27 +1,37 @@
 // Design Tokens - Sistema de Design Premium para Barbearia
 
 export const colors = {
-  // Cores Primárias
+  // Cores Primárias Premium
   primary: {
-    graphite: '#1A1A1A',      // Preto Grafite Principal
-    darkGray: '#2D2D2D',      // Cinza Escuro
-    mediumGray: '#4A4A4A',    // Cinza Médio
+    graphite: '#0A0A0A',      // Preto Grafite Profundo
+    darkGray: '#1A1A1A',      // Cinza Escuro Premium
+    mediumGray: '#2D2D2D',    // Cinza Médio
     lightGray: '#A8A8A8',     // Cinza Claro
   },
   
-  // Cores de Destaque
+  // Paleta Bronze/Cobre/Dourado Premium
   accent: {
+    bronze: '#CD7F32',        // Bronze
     gold: '#D4AF37',          // Dourado Fosco
-    goldHover: '#E5C158',     // Dourado Hover
-    goldDisabled: '#9B8A3F',  // Dourado Disabled
+    roseGold: '#B76E79',      // Rose Gold
+    goldHover: '#E8C468',     // Dourado Hover
+    goldDisabled: '#8B7935',  // Dourado Disabled
+  },
+  
+  // Gradientes Premium
+  gradients: {
+    primary: 'linear-gradient(135deg, #CD7F32 0%, #D4AF37 50%, #E8C468 100%)',
+    dark: 'linear-gradient(180deg, rgba(10, 10, 10, 0.95) 0%, rgba(26, 26, 26, 0.85) 100%)',
+    card: 'linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(20, 20, 20, 0.98) 100%)',
+    overlay: 'linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 100%)',
   },
   
   // Cores Neutras
   neutral: {
-    white: '#F5F5F5',         // Branco Suave
-    offWhite: '#E8E8E8',      // Off-White
-    border: '#3A3A3A',        // Bordas
-    divider: '#2A2A2A',       // Divisores
+    white: '#FAFAFA',         // Branco Premium
+    offWhite: '#F0F0F0',      // Off-White
+    border: '#2A2A2A',        // Bordas
+    divider: '#1A1A1A',       // Divisores
   },
   
   // Estados

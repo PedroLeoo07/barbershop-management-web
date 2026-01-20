@@ -28,35 +28,41 @@
 
 .input {
   width: 100%;
-  padding: var(--spacing-md);
-  background: var(--color-primary-dark-gray);
-  border: 1px solid var(--color-neutral-border);
-  border-radius: var(--radius-md);
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(20, 20, 20, 0.9) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: var(--radius-lg);
   color: var(--color-neutral-white);
   font-size: 1rem;
   transition: all var(--transition-base);
+  backdrop-filter: blur(10px);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .input::placeholder {
   color: var(--color-primary-light-gray);
+  opacity: 0.6;
 }
 
 .input:hover:not(:disabled) {
-  border-color: var(--color-primary-medium-gray);
+  border-color: rgba(212, 175, 55, 0.25);
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(20, 20, 20, 0.95) 100%);
 }
 
 .input:focus {
   outline: none;
-  border-color: var(--color-accent-gold);
-  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1),
-              0 0 20px rgba(212, 175, 55, 0.2),
-              inset 0 1px 0 rgba(212, 175, 55, 0.1);
-  background: linear-gradient(135deg, rgba(45, 45, 45, 0.95) 0%, rgba(35, 35, 35, 0.95) 100%);
+  border-color: rgba(212, 175, 55, 0.6);
+  box-shadow: 
+    0 0 0 3px rgba(212, 175, 55, 0.15),
+    0 4px 16px rgba(212, 175, 55, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  background: linear-gradient(135deg, rgba(30, 30, 30, 0.95) 0%, rgba(25, 25, 25, 0.98) 100%);
 }
 
 .input:disabled {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
+  filter: grayscale(0.5);
 }
 
 /* Com ícone */
@@ -78,21 +84,27 @@
   color: var(--color-accent-gold);
 }
 
-/* Estados de validação */
+/* Estados de validação premium */
 .error .input {
-  border-color: #F44336;
+  border-color: rgba(244, 67, 54, 0.4);
+  box-shadow: 0 0 0 2px rgba(244, 67, 54, 0.1);
 }
 
 .error .input:focus {
-  box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.1);
+  border-color: rgba(244, 67, 54, 0.6);
+  box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.15),
+              0 4px 16px rgba(244, 67, 54, 0.2);
 }
 
 .success .input {
-  border-color: #4CAF50;
+  border-color: rgba(76, 175, 80, 0.4);
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
 }
 
 .success .input:focus {
-  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+  border-color: rgba(76, 175, 80, 0.6);
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.15),
+              0 4px 16px rgba(76, 175, 80, 0.2);
 }
 
 /* Mensagens de ajuda */
