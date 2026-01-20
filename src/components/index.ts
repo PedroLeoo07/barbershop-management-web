@@ -31,3 +31,4 @@ export { SmoothLink } from './SmoothLink';
 
 // Layout Components
 export { Container, Section, MainContent } from './Container';
+export { Grid, GridItem } from './Grid';
