@@ -1,0 +1,1 @@
+export { SmoothLink } from './SmoothLink';

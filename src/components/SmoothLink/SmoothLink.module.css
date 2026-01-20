@@ -1,0 +1,29 @@
+.smoothLink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.smoothLink:active {
+  transform: scale(0.98);
+}
+
+.smoothLink::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  background: rgba(212, 175, 55, 0.08);
+  border-radius: var(--radius-md);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.smoothLink:active::before {
+  opacity: 1;
+}
+
+:global(body.transitioning) {
+  pointer-events: none;
+}
