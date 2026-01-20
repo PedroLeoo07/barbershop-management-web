@@ -1,29 +1,56 @@
+/* BackButton Premium */
 .backButton {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  background: transparent;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  color: #374151;
-  font-size: 14px;
-  font-weight: 500;
+  gap: 0.625rem;
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.6) 0%, rgba(20, 20, 20, 0.7) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: var(--radius-lg);
+  color: var(--color-neutral-off-white);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
   cursor: pointer;
-  transition: all 0.2s ease;
-  margin-bottom: 16px;
+  transition: all var(--transition-base);
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.backButton::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-base);
 }
 
 .backButton:hover {
-  background: #f3f4f6;
-  border-color: #d1d5db;
+  background: linear-gradient(135deg, rgba(30, 30, 30, 0.7) 0%, rgba(26, 26, 26, 0.8) 100%);
+  border-color: rgba(212, 175, 55, 0.4);
+  transform: translateX(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 16px rgba(212, 175, 55, 0.15);
+}
+
+.backButton:hover::before {
+  opacity: 1;
 }
 
 .backButton:active {
-  transform: scale(0.98);
+  transform: translateX(-2px) scale(0.98);
 }
 
 .backButton svg {
   width: 20px;
   height: 20px;
+  transition: transform var(--transition-base);
+}
+
+.backButton:hover svg {
+  transform: translateX(-3px);
+  filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.4));
 }
