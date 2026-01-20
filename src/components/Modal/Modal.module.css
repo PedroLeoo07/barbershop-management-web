@@ -27,9 +27,9 @@
 .modal {
   background: linear-gradient(135deg, rgba(26, 26, 26, 0.98) 0%, rgba(18, 18, 18, 0.98) 100%);
   border: 1px solid rgba(212, 175, 55, 0.2);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-lg);
   width: 100%;
-  max-width: 500px;
+  max-width: calc(100% - 2rem);
   max-height: 90vh;
   overflow: hidden;
   display: flex;
@@ -41,6 +41,13 @@
   position: relative;
   backdrop-filter: blur(20px);
   animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 640px) {
+  .modal {
+    max-width: 500px;
+    border-radius: var(--radius-xl);
+  }
 }
 
 @keyframes slideUp {
@@ -65,28 +72,61 @@
   box-shadow: 0 0 16px rgba(212, 175, 55, 0.5);
 }
 
-/* Tamanhos */
+/* Tamanhos Responsivos */
 .small {
-  max-width: 400px;
+  max-width: calc(100% - 2rem);
 }
 
 .large {
-  max-width: 800px;
+  max-width: calc(100% - 2rem);
 }
 
 .fullScreen {
-  max-width: 95vw;
+  max-width: calc(100% - 1rem);
   max-height: 95vh;
 }
 
-/* Header */
+@media (min-width: 640px) {
+  .small {
+    max-width: 400px;
+  }
+  
+  .large {
+    max-width: 700px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .large {
+    max-width: 900px;
+  }
+  
+  .fullScreen {
+    max-width: 95vw;
+  }
+}
+
+/* Header Responsivo */
 .header {
-  padding: var(--spacing-xl);
+  padding: var(--spacing-md);
   border-bottom: 1px solid var(--color-neutral-divider);
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-shrink: 0;
+  gap: var(--spacing-md);
+}
+
+@media (min-width: 640px) {
+  .header {
+    padding: var(--spacing-lg);
+  }
+}
+
+@media (min-width: 768px) {
+  .header {
+    padding: var(--spacing-xl);
+  }
 }
 
 .title {
@@ -118,12 +158,24 @@
   transform: rotate(90deg);
 }
 
-/* Body */
+/* Body Responsivo */
 .body {
-  padding: var(--spacing-xl);
+  padding: var(--spacing-md);
   overflow-y: auto;
   flex: 1;
   color: var(--color-neutral-white);
+}
+
+@media (min-width: 640px) {
+  .body {
+    padding: var(--spacing-lg);
+  }
+}
+
+@media (min-width: 768px) {
+  .body {
+    padding: var(--spacing-xl);
+  }
 }
 
 .body::-webkit-scrollbar {

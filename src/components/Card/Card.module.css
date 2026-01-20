@@ -112,13 +112,39 @@
   transform: scale(0.98);
 }
 
-/* Variantes de padding */
+/* Variantes de padding Responsivas */
 .compact {
-  padding: var(--spacing-md);
+  padding: var(--spacing-sm);
 }
 
 .spacious {
-  padding: var(--spacing-3xl);
+  padding: var(--spacing-xl);
+}
+
+@media (min-width: 640px) {
+  .card {
+    padding: var(--spacing-xl);
+  }
+  
+  .compact {
+    padding: var(--spacing-md);
+  }
+}
+
+@media (min-width: 768px) {
+  .card {
+    padding: var(--spacing-2xl);
+  }
+  
+  .spacious {
+    padding: var(--spacing-2xl);
+  }
+}
+
+@media (min-width: 1024px) {
+  .spacious {
+    padding: var(--spacing-3xl);
+  }
 }
 
 /* Card Header */

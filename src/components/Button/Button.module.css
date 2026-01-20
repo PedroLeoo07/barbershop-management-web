@@ -61,23 +61,53 @@
   box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2);
 }
 
-/* Tamanhos Premium */
+/* Tamanhos Premium Responsivos */
 .small {
-  padding: var(--spacing-sm) var(--spacing-lg);
+  padding: var(--spacing-sm) var(--spacing-md);
   font-size: 0.75rem;
-  min-height: 38px;
+  min-height: 36px;
 }
 
 .medium {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: 0.875rem;
+  min-height: 44px;
+}
+
+.large {
   padding: var(--spacing-md) var(--spacing-xl);
   font-size: 0.875rem;
   min-height: 48px;
 }
 
-.large {
-  padding: var(--spacing-lg) var(--spacing-2xl);
-  font-size: 1rem;
-  min-height: 56px;
+/* Responsividade Tablet+ */
+@media (min-width: 768px) {
+  .small {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    min-height: 38px;
+  }
+  
+  .medium {
+    padding: var(--spacing-md) var(--spacing-xl);
+    min-height: 48px;
+  }
+  
+  .large {
+    padding: var(--spacing-lg) var(--spacing-2xl);
+    font-size: 1rem;
+    min-height: 56px;
+  }
+}
+
+/* Botão Full Width em Mobile */
+.fullWidth {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .fullWidth {
+    width: auto;
+  }
 }
 
 /* Variantes Premium */
