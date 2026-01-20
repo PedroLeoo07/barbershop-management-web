@@ -23,6 +23,27 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: 'BarberShop - Sistema de Agendamentos',
   description: 'Sistema premium de gestão de agendamentos para barbearias',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+    viewportFit: 'cover',
+  },
+  themeColor: [
+    { media: '(prefers-color-scheme: dark)', color: '#0A0A0A' },
+    { media: '(prefers-color-scheme: light)', color: '#1A1A1A' },
+  ],
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'BarberShop',
+  },
+  formatDetection: {
+    telephone: true,
+    email: true,
+    address: true,
+  },
 };
 
 export default function RootLayout({
