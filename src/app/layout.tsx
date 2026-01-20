@@ -4,6 +4,7 @@ import { AuthProvider } from '@/contexts/AuthContext';
 import { RouteProgress } from '@/components/RouteProgress';
 import '@/styles/globals.css';
 import '@/styles/transitions.css';
+import '@/styles/responsive.css';
 
 // Configuração das fontes premium
 const inter = Inter({
