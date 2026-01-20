@@ -23,3 +23,6 @@ export function PageTransition({
   return (
     <div className={`${variantClass} ${className}`}>
       {children}
+    </div>
+  );
+}

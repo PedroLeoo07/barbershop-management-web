@@ -16,3 +16,35 @@
 .fadeIn {
   animation: fadeInAnimation 0.3s ease-out;
 }
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.scaleIn {
+  animation: scaleInAnimation 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes scaleInAnimation {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slideIn,
+  .fadeIn,
+  .scaleIn {
+    animation: none;
+  }
+}
