@@ -29,6 +29,9 @@ export { PageTransition } from './PageTransition';
 export { RouteProgress } from './RouteProgress';
 export { SmoothLink } from './SmoothLink';
 
+// Performance Optimized Components
+export { default as OptimizedLink } from './OptimizedLink';
+
 // Layout Components
 export { Container, Section, MainContent } from './Container';
 export { Grid, GridItem } from './Grid';
