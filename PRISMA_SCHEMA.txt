@@ -1,0 +1,367 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ===== ENUMS =====
+enum UserRole {
+  CLIENT
+  BARBER
+  ADMIN
+}
+
+enum AppointmentStatus {
+  SCHEDULED
+  CONFIRMED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  NO_SHOW
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  REFUNDED
+  CANCELLED
+}
+
+enum PaymentMethod {
+  PIX
+  CREDIT_CARD
+  DEBIT_CARD
+  CASH
+}
+
+enum StockMovementType {
+  IN
+  OUT
+  ADJUSTMENT
+}
+
+enum NotificationType {
+  EMAIL
+  SMS
+  PUSH
+  IN_APP
+}
+
+enum NotificationStatus {
+  PENDING
+  SENT
+  FAILED
+  READ
+}
+
+// ===== MODELS =====
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  phone     String?
+  cpf       String?  @unique
+  role      UserRole @default(CLIENT)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  clientDetails  ClientDetails?
+  barberDetails  BarberDetails?
+  appointments   Appointment[]
+  reviews        Review[]
+  notifications  Notification[]
+  refreshTokens  RefreshToken[]
+
+  @@index([email])
+  @@index([cpf])
+  @@map("users")
+}
+
+model ClientDetails {
+  id            String   @id @default(cuid())
+  userId        String   @unique
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  preferredBarber String?
+  loyaltyPoints   Int      @default(0)
+  totalSpent      Float    @default(0)
+  noShowCount     Int      @default(0)
+  isBlocked       Boolean  @default(false)
+  blockedReason   String?
+  blockedUntil    DateTime?
+  lastVisit       DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("client_details")
+}
+
+model BarberDetails {
+  id              String   @id @default(cuid())
+  userId          String   @unique
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  specialties     String[]
+  bio             String?
+  photoUrl        String?
+  commissionRate  Float    @default(0.5)
+  rating          Float    @default(0)
+  reviewCount     Int      @default(0)
+  totalServices   Int      @default(0)
+  
+  isAvailable     Boolean  @default(true)
+  workingDays     Int[]
+  startTime       String
+  endTime         String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  appointments    Appointment[]
+  scheduleRules   ScheduleRule[]
+  reviews         Review[]
+
+  @@map("barber_details")
+}
+
+model Service {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  price       Float
+  duration    Int
+  category    String?
+  isActive    Boolean  @default(true)
+  imageUrl    String?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  appointments Appointment[]
+
+  @@index([isActive])
+  @@map("services")
+}
+
+model Appointment {
+  id            String            @id @default(cuid())
+  
+  clientId      String
+  client        User              @relation(fields: [clientId], references: [id])
+  
+  barberId      String
+  barber        BarberDetails     @relation(fields: [barberId], references: [id])
+  
+  serviceId     String
+  service       Service           @relation(fields: [serviceId], references: [id])
+  
+  date          DateTime
+  startTime     String
+  endTime       String
+  status        AppointmentStatus @default(SCHEDULED)
+  
+  notes         String?
+  cancelReason  String?
+  cancelledAt   DateTime?
+  cancelledBy   String?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  payment       Payment?
+  review        Review?
+
+  @@index([clientId])
+  @@index([barberId])
+  @@index([date])
+  @@index([status])
+  @@map("appointments")
+}
+
+model ScheduleRule {
+  id          String   @id @default(cuid())
+  
+  barberId    String
+  barber      BarberDetails @relation(fields: [barberId], references: [id], onDelete: Cascade)
+  
+  type        String
+  title       String
+  description String?
+  
+  startDate   DateTime
+  endDate     DateTime?
+  
+  startTime   String?
+  endTime     String?
+  
+  isRecurring Boolean  @default(false)
+  recurrence  String?
+  
+  isActive    Boolean  @default(true)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([barberId])
+  @@index([startDate])
+  @@map("schedule_rules")
+}
+
+model Payment {
+  id              String        @id @default(cuid())
+  
+  appointmentId   String        @unique
+  appointment     Appointment   @relation(fields: [appointmentId], references: [id])
+  
+  amount          Float
+  method          PaymentMethod
+  status          PaymentStatus @default(PENDING)
+  
+  transactionId   String?       @unique
+  pixCode         String?
+  pixQrCode       String?
+  
+  paidAt          DateTime?
+  refundedAt      DateTime?
+  refundReason    String?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status])
+  @@index([transactionId])
+  @@map("payments")
+}
+
+model Review {
+  id            String   @id @default(cuid())
+  
+  appointmentId String   @unique
+  appointment   Appointment @relation(fields: [appointmentId], references: [id])
+  
+  clientId      String
+  client        User     @relation(fields: [clientId], references: [id])
+  
+  barberId      String
+  barber        BarberDetails @relation(fields: [barberId], references: [id])
+  
+  rating        Int
+  comment       String?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([barberId])
+  @@index([rating])
+  @@map("reviews")
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  sku         String?  @unique
+  barcode     String?  @unique
+  category    String?
+  
+  costPrice   Float
+  sellPrice   Float
+  
+  currentStock Int     @default(0)
+  minStock     Int     @default(5)
+  maxStock     Int     @default(100)
+  
+  unit        String   @default("un")
+  
+  isActive    Boolean  @default(true)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  stockMovements StockMovement[]
+
+  @@index([sku])
+  @@index([barcode])
+  @@map("products")
+}
+
+model StockMovement {
+  id          String            @id @default(cuid())
+  
+  productId   String
+  product     Product           @relation(fields: [productId], references: [id])
+  
+  type        StockMovementType
+  quantity    Int
+  reason      String?
+  notes       String?
+  
+  performedBy String
+  
+  createdAt DateTime @default(now())
+
+  @@index([productId])
+  @@index([createdAt])
+  @@map("stock_movements")
+}
+
+model Notification {
+  id        String             @id @default(cuid())
+  
+  userId    String
+  user      User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  type      NotificationType
+  status    NotificationStatus @default(PENDING)
+  
+  title     String
+  message   String
+  data      Json?
+  
+  sentAt    DateTime?
+  readAt    DateTime?
+  
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([status])
+  @@map("notifications")
+}
+
+model RefreshToken {
+  id        String   @id @default(cuid())
+  
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  token     String   @unique
+  expiresAt DateTime
+  
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([token])
+  @@map("refresh_tokens")
+}
+
+model SystemSettings {
+  id    String @id @default(cuid())
+  key   String @unique
+  value String
+  
+  updatedAt DateTime @updatedAt
+
+  @@map("system_settings")
+}

@@ -32,3 +32,39 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Backend
+/backend/dist
+/backend/node_modules
+
+# Database
+*.db
+*.sqlite
+
+# Logs
+logs
+*.log
+
+# IDE
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
+
+# Uploads
+/uploads
+/public/uploads
+
+# Testing
+.nyc_output
+
+# Docker
+docker-compose.override.yml
