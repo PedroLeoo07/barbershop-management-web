@@ -4,7 +4,14 @@ import pathlib
 # Base directory
 BASE_DIR = pathlib.Path(__file__).parent
 
-# API Routes structure
+print("""
+╔══════════════════════════════════════════════════════════╗
+║   🏪 BARBERSHOP MANAGEMENT - BACKEND GENERATOR v2.0    ║
+║   Gerando estrutura completa de API Routes...          ║
+╚══════════════════════════════════════════════════════════╝
+""")
+
+# API Routes structure - COMPLETO
 API_ROUTES = {
     "auth/login": """import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
