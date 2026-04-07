@@ -15,7 +15,6 @@ export async function POST(request: NextRequest) {
     if (result.error) return result.error;
     
     const { refreshToken: token } = result.data;
-
     let payload;
     try {
       payload = verifyRefreshToken(token);

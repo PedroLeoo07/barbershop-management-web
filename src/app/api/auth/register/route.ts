@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import { z } from 'zod';
 import prisma from '@/lib/prisma';
 import { hashPassword, generateAccessToken, generateRefreshToken } from '@/lib/auth';
@@ -20,7 +20,6 @@ export async function POST(request: NextRequest) {
     if (result.error) return result.error;
     
     const { email, password, name, phone, cpf, role } = result.data;
-
     const existingUser = await prisma.user.findFirst({
       where: { OR: [{ email }, ...(cpf ? [{ cpf }] : [])] },
     });
@@ -30,14 +29,11 @@ export async function POST(request: NextRequest) {
     }
 
     const hashedPassword = await hashPassword(password);
-
     const user = await prisma.user.create({
       data: {
         email, password: hashedPassword, name, phone, cpf, role,
         ...(role === 'CLIENT' && { clientDetails: { create: {} } }),
-        ...(role === 'BARBER' && { 
-          barberDetails: { create: { workingDays: [1,2,3,4,5], startTime: '09:00', endTime: '18:00' } } 
-        }),
+        ...(role === 'BARBER' && { barberDetails: { create: { workingDays: [1,2,3,4,5], startTime: '09:00', endTime: '18:00' } } }),
       },
       select: { id: true, email: true, name: true, role: true, createdAt: true },
     });

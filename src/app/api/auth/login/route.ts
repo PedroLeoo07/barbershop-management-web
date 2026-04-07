@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import { z } from 'zod';
 import prisma from '@/lib/prisma';
 import { comparePassword, generateAccessToken, generateRefreshToken } from '@/lib/auth';
@@ -16,7 +16,6 @@ export async function POST(request: NextRequest) {
     if (result.error) return result.error;
     
     const { email, password } = result.data;
-
     const user = await prisma.user.findUnique({
       where: { email },
       include: { clientDetails: true, barberDetails: true },
@@ -53,12 +52,7 @@ export async function POST(request: NextRequest) {
     });
 
     const { password: _, ...userWithoutPassword } = user;
-
-    return success({
-      message: 'Login realizado com sucesso',
-      user: userWithoutPassword,
-      tokens: { accessToken, refreshToken },
-    });
+    return success({ message: 'Login realizado com sucesso', user: userWithoutPassword, tokens: { accessToken, refreshToken } });
   } catch (error) {
     return handleError(error);
   }

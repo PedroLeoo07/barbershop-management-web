@@ -1,0 +1,194 @@
+/* Performance-optimized transitions */
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* GPU-accelerated animations */
+.page-transition {
+  will-change: opacity;
+  animation: fadeIn 0.15s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Fast stagger animation for lists */
+.stagger-item {
+  will-change: transform, opacity;
+  animation: staggerIn 0.2s ease-out backwards;
+}
+
+@keyframes staggerIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply delays efficiently */
+.stagger-item:nth-child(1) {
+  animation-delay: 0.02s;
+}
+.stagger-item:nth-child(2) {
+  animation-delay: 0.04s;
+}
+.stagger-item:nth-child(3) {
+  animation-delay: 0.06s;
+}
+.stagger-item:nth-child(4) {
+  animation-delay: 0.08s;
+}
+.stagger-item:nth-child(5) {
+  animation-delay: 0.1s;
+}
+.stagger-item:nth-child(6) {
+  animation-delay: 0.12s;
+}
+.stagger-item:nth-child(7) {
+  animation-delay: 0.14s;
+}
+.stagger-item:nth-child(8) {
+  animation-delay: 0.16s;
+}
+.stagger-item:nth-child(9) {
+  animation-delay: 0.18s;
+}
+.stagger-item:nth-child(10) {
+  animation-delay: 0.2s;
+}
+/* Max 10 items animated, rest appear instantly */
+
+/* Optimized route progress bar */
+.route-progress {
+  will-change: transform;
+  transform: translateZ(0); /* GPU acceleration */
+}
+
+/* Fast hover transitions */
+.hover-transition {
+  transition: all 0.15s ease;
+}
+
+/* Smooth scroll with GPU acceleration */
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Optimized card animations */
+.card-enter {
+  will-change: transform, opacity;
+  animation: cardEnter 0.2s ease-out;
+}
+
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateZ(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateZ(0);
+  }
+}
+
+/* Faster modal animations */
+.modal-backdrop {
+  will-change: opacity;
+  animation: fadeIn 0.15s ease;
+}
+
+.modal-content {
+  will-change: transform, opacity;
+  animation: modalSlideIn 0.2s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95) translateZ(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1) translateZ(0);
+  }
+}
+
+/* Loading skeleton optimization */
+.skeleton {
+  will-change: opacity;
+  background: linear-gradient(
+    90deg,
+    var(--color-gray-800) 0%,
+    var(--color-gray-700) 50%,
+    var(--color-gray-800) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Button ripple effect - lighter version */
+.button-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.button-ripple::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.3s ease,
+    height 0.3s ease;
+}
+
+.button-ripple:active::after {
+  width: 200px;
+  height: 200px;
+}
+
+/* Prevent layout shift */
+.prevent-shift {
+  contain: layout style paint;
+}
+
+/* Optimize repaints */
+.optimize-repaint {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
