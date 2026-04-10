@@ -65,7 +65,7 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
     const [endHour, endMin] = barber.endTime.split(':').map(Number);
     
     for (let hour = startHour; hour < endHour; hour++) {
-      const timeSlot = \`\${hour.toString().padStart(2, '0')}:00\`;
+      const timeSlot = `${hour.toString().padStart(2, '0')}:00`;
       const isBooked = appointments.some(apt => apt.startTime === timeSlot);
       if (!isBooked) {
         availableSlots.push({ time: timeSlot, available: true });

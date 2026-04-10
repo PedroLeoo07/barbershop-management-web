@@ -79,7 +79,7 @@ async function createAppointmentHandler(request: AuthenticatedRequest) {
     const [hour, min] = startTime.split(':').map(Number);
     const endHour = hour + Math.floor(service.duration / 60);
     const endMin = min + (service.duration % 60);
-    const endTime = \`\${endHour.toString().padStart(2, '0')}:\${endMin.toString().padStart(2, '0')}\`;
+    const endTime = `${endHour.toString().padStart(2, '0')}:${endMin.toString().padStart(2, '0')}`;
 
     // Check for conflicts
     const conflictingAppointment = await prisma.appointment.findFirst({
