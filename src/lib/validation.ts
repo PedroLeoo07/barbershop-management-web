@@ -19,7 +19,7 @@ export async function validateBody<T>(
           {
             error: "Validation Error",
             message: "Dados inválidos",
-            details: error.errors.map((err) => ({
+            details: error.issues.map((err) => ({
               field: err.path.join("."),
               message: err.message,
             })),
@@ -56,7 +56,7 @@ export function validateQuery<T>(
           {
             error: "Validation Error",
             message: "Parâmetros inválidos",
-            details: error.errors.map((err) => ({
+            details: error.issues.map((err) => ({
               field: err.path.join("."),
               message: err.message,
             })),

@@ -9,9 +9,15 @@ export interface AuthenticatedRequest extends NextRequest {
  * Middleware to authenticate requests
  */
 export function authenticate(
-  handler: (req: AuthenticatedRequest) => Promise<NextResponse>,
+  handler: (
+    req: AuthenticatedRequest,
+    context?: { params?: Record<string, string> },
+  ) => Promise<NextResponse>,
 ) {
-  return async (req: AuthenticatedRequest): Promise<NextResponse> => {
+  return async (
+    req: AuthenticatedRequest,
+    context?: { params?: Record<string, string> },
+  ): Promise<NextResponse> => {
     try {
       // Get token from Authorization header
       const authHeader = req.headers.get("authorization");
@@ -32,7 +38,7 @@ export function authenticate(
       req.user = payload;
 
       // Call handler
-      return handler(req);
+      return handler(req, context);
     } catch (error) {
       return NextResponse.json(
         { error: "Unauthorized", message: "Token inválido ou expirado" },
@@ -46,8 +52,13 @@ export function authenticate(
  * Middleware to check user role
  */
 export function authorize(...allowedRoles: string[]) {
-  return (handler: (req: AuthenticatedRequest) => Promise<NextResponse>) => {
-    return authenticate(async (req: AuthenticatedRequest) => {
+  return (
+    handler: (
+      req: AuthenticatedRequest,
+      context?: { params?: Record<string, string> },
+    ) => Promise<NextResponse>,
+  ) => {
+    return authenticate(async (req: AuthenticatedRequest, context) => {
       if (!req.user) {
         return NextResponse.json(
           { error: "Unauthorized", message: "Usuário não autenticado" },
@@ -62,7 +73,7 @@ export function authorize(...allowedRoles: string[]) {
         );
       }
 
-      return handler(req);
+      return handler(req, context);
     });
   };
 }
