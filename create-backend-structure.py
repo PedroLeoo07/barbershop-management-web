@@ -18,7 +18,7 @@ import { z } from 'zod';
 import prisma from '@/lib/prisma';
 import { comparePassword, generateAccessToken, generateRefreshToken } from '@/lib/auth';
 import { validateBody } from '@/lib/validation';
-import { handleError, success, unauthorized } from '@/lib/errors';
+import { handleError, success, unautha0orized } from '@/lib/errors';
 
 const loginSchema = z.object({
   email: z.string().email('Email inválido'),
