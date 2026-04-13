@@ -1,4 +1,4 @@
-import { Notification, NotificationPreferences, NotificationType } from '@/types';
+import type { Notification, NotificationPreferences, NotificationType } from '@/types';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
 

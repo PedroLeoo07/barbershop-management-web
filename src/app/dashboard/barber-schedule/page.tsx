@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 import { getBarberSchedule, updateAppointmentStatus } from '@/lib/api';
-import { Appointment } from '@/types';
+import type { Appointment } from '@/types';
 import Card from '@/components/Card/Card';
 import Button from '@/components/Button/Button';
 import Loading from '@/components/Loading/Loading';

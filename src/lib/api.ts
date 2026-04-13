@@ -1,6 +1,6 @@
 // API utilities and mock data
 
-import { Service, Barber, Appointment, DashboardStats, DayAvailability } from '@/types';
+import type { Service, Barber, Appointment, DashboardStats, DayAvailability } from '@/types';
 
 // Base URL da API (configurar no .env)
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
@@ -408,7 +408,7 @@ export const markNotificationAsRead = async (id: string) => {
   return new Promise((resolve) => setTimeout(() => resolve({ id, read: true }), 300));
 };
 
-export const deleteNotification = async (id: string) => {
+export const deleteNotification = async (_id: string) => {
   // return fetchAPI(`/notifications/${id}`, { method: 'DELETE' });
   return new Promise((resolve) => setTimeout(resolve, 300));
 };
@@ -465,7 +465,7 @@ export const updateSettings = async (settings: any) => {
 };
 
 // Availability
-export const getAvailability = async (barberId: string, date: string): Promise<DayAvailability> => {
+export const getAvailability = async (_barberId: string, _date: string): Promise<DayAvailability> => {
   // return fetchAPI<DayAvailability>(`/barbers/${barberId}/schedule?date=${date}`);
   const mockSlots = Array.from({ length: 9 }, (_, i) => ({
     time: `${9 + i}:00`,

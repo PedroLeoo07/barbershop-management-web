@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { api } from '@/lib/api';
-import { Service, Barber } from '@/types';
+import type { Service, Barber } from '@/types';
 import { Card, CardHeader, CardContent } from '@/components/Card';
 import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';

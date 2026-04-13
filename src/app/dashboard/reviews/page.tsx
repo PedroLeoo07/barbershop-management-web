@@ -7,7 +7,7 @@ import { Loading } from '@/components/Loading';
 import { Button } from '@/components/Button';
 import { RatingStars } from '@/components/RatingStars';
 import { getMockReviews } from '@/services/reviewService';
-import { Review } from '@/types';
+import type { Review } from '@/types';
 import styles from './page.module.css';
 
 export default function ReviewsPage() {

@@ -1,0 +1,32 @@
+# Ignore files
+node_modules
+.next
+dist
+build
+coverage
+.git
+.vscode
+.idea
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Testing
+.nyc_output
+test-results
+playwright-report
+
+# OSX
+.DS_Store
+
+# IDE
+*.swp
+*.swo
+*~

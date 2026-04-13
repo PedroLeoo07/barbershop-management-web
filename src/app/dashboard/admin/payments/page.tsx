@@ -8,14 +8,12 @@ import { Modal } from '@/components/Modal';
 import { Loading } from '@/components/Loading';
 import { BackButton } from '@/components/BackButton';
 import { PaymentStatusBadge } from '@/components/Badge';
-import { 
-  getAllPayments, 
-  updatePaymentStatus, 
-  confirmPayment, 
-  refundPayment, 
-  getMockPayments 
+import {
+  confirmPayment,
+  refundPayment,
+  getMockPayments
 } from '@/services/paymentService';
-import { Payment, PaymentStatus, PaymentMethod } from '@/types';
+import type { Payment, PaymentStatus, PaymentMethod } from '@/types';
 import styles from './page.module.css';
 
 export default function AdminPaymentsPage() {

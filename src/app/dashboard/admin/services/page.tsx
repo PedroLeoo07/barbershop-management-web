@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { api } from '@/lib/api';
-import { Service } from '@/types';
+import type { Service } from '@/types';
 import { Card, CardHeader, CardContent } from '@/components/Card';
 import { Button } from '@/components/Button';
 import { Input, Textarea } from '@/components/Input';

@@ -5,8 +5,8 @@ import { useRouter } from 'next/navigation';
 import { Card } from '@/components/Card';
 import { BackButton } from '@/components/BackButton';
 import { Loading } from '@/components/Loading';
-import { getMockRevenueReport, getDateRange, formatCurrency } from '@/services/reportService';
-import { RevenueReport } from '@/types';
+import { getMockRevenueReport, formatCurrency } from '@/services/reportService';
+import type { RevenueReport } from '@/types';
 import styles from './page.module.css';
 
 export default function ReportsPage() {

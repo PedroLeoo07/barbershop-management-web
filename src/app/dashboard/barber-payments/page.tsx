@@ -8,13 +8,11 @@ import { Modal } from '@/components/Modal';
 import { Loading } from '@/components/Loading';
 import { BackButton } from '@/components/BackButton';
 import { PaymentStatusBadge } from '@/components/Badge';
-import { 
-  getAllPayments, 
-  getPaymentByAppointment,
-  confirmPayment, 
-  getMockPayments 
+import {
+  confirmPayment,
+  getMockPayments
 } from '@/services/paymentService';
-import { Payment, PaymentStatus, PaymentMethod } from '@/types';
+import type { Payment, PaymentStatus, PaymentMethod } from '@/types';
 import { useAuth } from '@/contexts/AuthContext';
 import styles from './page.module.css';
 

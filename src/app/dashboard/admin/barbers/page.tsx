@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { api } from '@/lib/api';
-import { Barber, TimeSlot } from '@/types';
+import type { Barber } from '@/types';
 import { Card, CardHeader, CardContent } from '@/components/Card';
 import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';

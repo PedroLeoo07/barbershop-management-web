@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { api } from '@/lib/api';
-import { Appointment } from '@/types';
-import { Card, CardHeader, CardContent } from '@/components/Card';
+import type { Appointment } from '@/types';
+import { Card, CardContent } from '@/components/Card';
 import { Button } from '@/components/Button';
 import { Loading } from '@/components/Loading';
 import { BackButton } from '@/components/BackButton';

@@ -1,11 +1,11 @@
-import { 
-  ScheduleRule, 
-  AppointmentValidation, 
+import type {
+  ScheduleRule,
+  AppointmentValidation,
   ClientRestriction,
   Appointment,
   TimeSlot,
-  WorkingHours
-} from '@/types';
+  WorkingHours,
+} from '@/types'
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
 
@@ -147,8 +147,7 @@ export function validateTimeSlot(
   }
 
   // 2. Verificar regras de bloqueio
-  const dayOfWeek = new Date(date).toLocaleDateString('en-US', { weekday: 'lowercase' });
-  const activeRules = rules.filter(rule => {
+  const activeRules = rules.filter((rule) => {
     if (!rule.active) return false;
     if (rule.barberId && rule.barberId !== barberId) return false;
     
@@ -306,8 +305,11 @@ function formatTime(minutes: number): string {
 }
 
 export function getWorkingHoursForDate(workingHours: WorkingHours, date: string): TimeSlot[] {
-  const dayOfWeek = new Date(date).toLocaleDateString('en-US', { weekday: 'lowercase' }) as keyof WorkingHours;
-  return workingHours[dayOfWeek] || [];
+  const dayOfWeek = (new Date(date)
+    .toLocaleDateString('en-US', { weekday: 'long' })
+    .toLowerCase()
+    .slice(0, 3)) as keyof WorkingHours
+  return workingHours[dayOfWeek] || []
 }
 
 // ========== MOCK DATA ==========

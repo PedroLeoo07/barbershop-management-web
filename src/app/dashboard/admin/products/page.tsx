@@ -7,7 +7,7 @@ import { Loading } from '@/components/Loading';
 import { Button } from '@/components/Button';
 import { StockStatusBadge } from '@/components/Badge';
 import { getMockProducts, getMockStockAlerts } from '@/services/productService';
-import { Product, StockAlert } from '@/types';
+import type { Product, StockAlert } from '@/types';
 import styles from './page.module.css';
 
 export default function ProductsPage() {
