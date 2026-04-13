@@ -65,6 +65,23 @@ Thumbs.db
 
 # Testing
 .nyc_output
+/coverage
+/test-results
+/blob-report
+/playwright-report
+.env.test
 
 # Docker
 docker-compose.override.yml
+
+# Build analysis
+dist-stats.json
+
+# IDE specific
+.vscode/launch.json
+.vscode/tasks.json
+*.sublime-project
+*.sublime-workspace
+
+# Environment
+.env.local.backup
