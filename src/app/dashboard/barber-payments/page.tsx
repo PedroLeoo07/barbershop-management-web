@@ -13,11 +13,9 @@ import {
   getMockPayments
 } from '@/services/paymentService';
 import type { Payment, PaymentStatus, PaymentMethod } from '@/types';
-import { useAuth } from '@/contexts/AuthContext';
 import styles from './page.module.css';
 
 export default function BarberPaymentsPage() {
-  const { user } = useAuth();
   const [payments, setPayments] = useState<Payment[]>([]);
   const [filteredPayments, setFilteredPayments] = useState<Payment[]>([]);
   const [loading, setLoading] = useState(true);

@@ -17,7 +17,7 @@ export default function BarberSchedulePage() {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
-  const [filter, setFilter] = useState<'all' | 'pending' | 'confirmed'>('all');
+  const [filter, setFilter] = useState<'all' | 'scheduled' | 'confirmed'>('all');
 
   useEffect(() => {
     if (user?.role !== 'barber') {
@@ -55,14 +55,14 @@ export default function BarberSchedulePage() {
 
   const stats = {
     total: appointments.length,
-    pending: appointments.filter(a => a.status === 'pending').length,
+    pending: appointments.filter(a => a.status === 'scheduled').length,
     confirmed: appointments.filter(a => a.status === 'confirmed').length,
     completed: appointments.filter(a => a.status === 'completed').length,
   };
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'pending': return '#f59e0b';
+      case 'scheduled': return '#f59e0b';
       case 'confirmed': return '#10b981';
       case 'completed': return '#6366f1';
       case 'cancelled': return '#ef4444';
@@ -72,7 +72,7 @@ export default function BarberSchedulePage() {
 
   const getStatusLabel = (status: string) => {
     switch (status) {
-      case 'pending': return 'Pendente';
+      case 'scheduled': return 'Agendado';
       case 'confirmed': return 'Confirmado';
       case 'completed': return 'Concluído';
       case 'cancelled': return 'Cancelado';
@@ -83,7 +83,7 @@ export default function BarberSchedulePage() {
   if (loading) {
     return (
       <div className={styles.loadingContainer}>
-        <Loading variant="spinner" size="large" />
+        <Loading size="large" />
       </div>
     );
   }
@@ -152,11 +152,11 @@ export default function BarberSchedulePage() {
           Todos ({stats.total})
         </Button>
         <Button
-          variant={filter === 'pending' ? 'primary' : 'outline'}
+          variant={filter === 'scheduled' ? 'primary' : 'outline'}
           size="small"
-          onClick={() => setFilter('pending')}
+          onClick={() => setFilter('scheduled')}
         >
-          Pendentes ({stats.pending})
+          Agendados ({stats.pending})
         </Button>
         <Button
           variant={filter === 'confirmed' ? 'primary' : 'outline'}
@@ -220,7 +220,7 @@ export default function BarberSchedulePage() {
               </div>
 
               <div className={styles.appointmentActions}>
-                {appointment.status === 'pending' && (
+                {appointment.status === 'scheduled' && (
                   <>
                     <Button
                       variant="primary"

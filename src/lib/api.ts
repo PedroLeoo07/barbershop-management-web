@@ -3,34 +3,34 @@
 import type { Service, Barber, Appointment, DashboardStats, DayAvailability } from '@/types';
 
 // Base URL da API (configurar no .env)
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
+// const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
 
 // Helper para obter o token de autenticação
-function getAuthToken(): string | null {
-  if (typeof window === 'undefined') return null;
-  return localStorage.getItem('token');
-}
+// function getAuthToken(): string | null {
+//   if (typeof window === 'undefined') return null;
+//   return localStorage.getItem('token');
+// }
 
 // Helper para fazer requisições
-async function fetchAPI<T>(endpoint: string, options?: RequestInit): Promise<T> {
-  const token = getAuthToken();
-  
-  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-    ...options,
-    headers: {
-      'Content-Type': 'application/json',
-      ...(token && { Authorization: `Bearer ${token}` }),
-      ...options?.headers,
-    },
-  });
-
-  if (!response.ok) {
-    const error = await response.json().catch(() => ({ error: response.statusText }));
-    throw new Error(error.error || `API Error: ${response.statusText}`);
-  }
-
-  return response.json();
-}
+// async function fetchAPI<T>(endpoint: string, options?: RequestInit): Promise<T> {
+//   const token = getAuthToken();
+//
+//   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+//     ...options,
+//     headers: {
+//       'Content-Type': 'application/json',
+//       ...(token && { Authorization: `Bearer ${token}` }),
+//       ...options?.headers,
+//     },
+//   });
+//
+//   if (!response.ok) {
+//     const error = await response.json().catch(() => ({ error: response.statusText }));
+//     throw new Error(error.error || `API Error: ${response.statusText}`);
+//   }
+//
+//   return response.json();
+// }
 
 // ========== MOCK DATA ==========
 
@@ -119,12 +119,12 @@ export const mockBarbers: Barber[] = [
 // ========== API FUNCTIONS ==========
 
 // 🔐 Authentication
-export const login = async (email: string, password: string) => {
+export const login = async (_email: string, _password: string) => {
   // return fetchAPI('/auth/login', { method: 'POST', body: JSON.stringify({ email, password }) });
   return new Promise((resolve) => setTimeout(() => resolve({ token: 'mock-token', user: {} }), 500));
 };
 
-export const register = async (name: string, email: string, password: string, phone: string) => {
+export const register = async (_name: string, _email: string, _password: string, _phone: string) => {
   // return fetchAPI('/auth/register', { method: 'POST', body: JSON.stringify({ name, email, password, phone }) });
   return new Promise((resolve) => setTimeout(() => resolve({ token: 'mock-token', user: {} }), 500));
 };
@@ -140,7 +140,7 @@ export const getMe = async () => {
 };
 
 // 💈 Services
-export const getServices = async (active?: boolean): Promise<Service[]> => {
+export const getServices = async (_active?: boolean): Promise<Service[]> => {
   // const query = active !== undefined ? `?active=${active}` : '';
   // return fetchAPI<Service[]>(`/services${query}`);
   return new Promise((resolve) => setTimeout(() => resolve(mockServices), 500));
@@ -174,13 +174,13 @@ export const updateService = async (id: string, service: Partial<Service>): Prom
   );
 };
 
-export const deleteService = async (id: string): Promise<void> => {
+export const deleteService = async (_id: string): Promise<void> => {
   // return fetchAPI<void>(`/services/${id}`, { method: 'DELETE' });
   return new Promise((resolve) => setTimeout(resolve, 500));
 };
 
 // 👨‍💼 Barbers
-export const getBarbers = async (available?: boolean): Promise<Barber[]> => {
+export const getBarbers = async (_available?: boolean): Promise<Barber[]> => {
   // const query = available !== undefined ? `?available=${available}` : '';
   // return fetchAPI<Barber[]>(`/barbers${query}`);
   return new Promise((resolve) => setTimeout(() => resolve(mockBarbers), 500));
@@ -198,14 +198,14 @@ export const createBarber = async (barber: any): Promise<Barber> => {
   return new Promise((resolve) => setTimeout(() => resolve({ ...barber, id: '3' }), 500));
 };
 
-export const updateBarber = async (id: string, barber: Partial<Barber>): Promise<Barber> => {
+export const updateBarber = async (_id: string, barber: Partial<Barber>): Promise<Barber> => {
   // return fetchAPI<Barber>(`/barbers/${id}`, { method: 'PUT', body: JSON.stringify(barber) });
   return new Promise((resolve) =>
     setTimeout(() => resolve({ ...mockBarbers[0], ...barber }), 500)
   );
 };
 
-export const deleteBarber = async (id: string): Promise<void> => {
+export const deleteBarber = async (_id: string): Promise<void> => {
   // return fetchAPI<void>(`/barbers/${id}`, { method: 'DELETE' });
   return new Promise((resolve) => setTimeout(resolve, 500));
 };
@@ -224,7 +224,7 @@ export const getBarberSchedule = async (barberId: string, date: string): Promise
       date,
       time: '09:00',
       duration: 30,
-      status: 'pending',
+      status: 'scheduled',
       price: 50,
       createdAt: new Date().toISOString(),
     },
@@ -263,7 +263,8 @@ export const getBarberSchedule = async (barberId: string, date: string): Promise
 };
 
 // 📅 Appointments
-export const getAppointments = async (params?: {
+export const getAppointments = async (_params?: {
+  clientId?: string;
   status?: string;
   startDate?: string;
   endDate?: string;
@@ -335,7 +336,7 @@ export const createAppointment = async (
 export const updateAppointmentStatus = async (
   id: string,
   status: 'confirmed' | 'completed' | 'cancelled',
-  cancellationReason?: string
+  _cancellationReason?: string
 ): Promise<Appointment> => {
   // return fetchAPI<Appointment>(`/appointments/${id}/status`, {
   //   method: 'PATCH',
@@ -364,7 +365,7 @@ export const updateAppointmentStatus = async (
   );
 };
 
-export const cancelAppointment = async (id: string, reason: string): Promise<void> => {
+export const cancelAppointment = async (_id: string, _reason: string): Promise<void> => {
   // return fetchAPI<void>(`/appointments/${id}`, { method: 'DELETE', body: JSON.stringify({ reason }) });
   return new Promise((resolve) => setTimeout(resolve, 500));
 };
@@ -397,7 +398,7 @@ export const getDashboardStats = async (): Promise<DashboardStats> => {
 };
 
 // 🔔 Notifications
-export const getNotifications = async (unread?: boolean) => {
+export const getNotifications = async (_unread?: boolean) => {
   // const query = unread !== undefined ? `?unread=${unread}` : '';
   // return fetchAPI(`/notifications${query}`);
   return new Promise((resolve) => setTimeout(() => resolve([]), 500));
@@ -409,7 +410,7 @@ export const markNotificationAsRead = async (id: string) => {
 };
 
 export const deleteNotification = async (_id: string) => {
-  // return fetchAPI(`/notifications/${id}`, { method: 'DELETE' });
+  // return fetchAPI(`/notifications/${_id}`, { method: 'DELETE' });
   return new Promise((resolve) => setTimeout(resolve, 300));
 };
 
@@ -466,7 +467,7 @@ export const updateSettings = async (settings: any) => {
 
 // Availability
 export const getAvailability = async (_barberId: string, _date: string): Promise<DayAvailability> => {
-  // return fetchAPI<DayAvailability>(`/barbers/${barberId}/schedule?date=${date}`);
+  // return fetchAPI<DayAvailability>(`/barbers/${_barberId}/schedule?date=${_date}`);
   const mockSlots = Array.from({ length: 9 }, (_, i) => ({
     time: `${9 + i}:00`,
     available: Math.random() > 0.3,
@@ -476,7 +477,7 @@ export const getAvailability = async (_barberId: string, _date: string): Promise
     setTimeout(
       () =>
         resolve({
-          date,
+          date: _date,
           available: true,
           slots: mockSlots,
         }),
@@ -493,9 +494,22 @@ export const api = {
   deleteService,
   getBarbers,
   getBarberById,
+  createBarber,
+  updateBarber,
+  deleteBarber,
+  getBarberSchedule,
   getAppointments,
+  getAppointmentById,
   createAppointment,
+  updateAppointmentStatus,
   cancelAppointment,
   getAvailability,
   getDashboardStats,
+  getNotifications,
+  markNotificationAsRead,
+  deleteNotification,
+  addAppointmentRating,
+  getBarberRatings,
+  getSettings,
+  updateSettings,
 };

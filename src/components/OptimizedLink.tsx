@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ComponentProps, memo } from 'react';
+import type { ComponentProps } from 'react';
+import { memo } from 'react';
 
 interface OptimizedLinkProps extends Omit<ComponentProps<typeof Link>, 'href'> {
   href: string;

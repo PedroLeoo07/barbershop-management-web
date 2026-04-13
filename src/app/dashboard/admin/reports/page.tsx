@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { Card } from '@/components/Card';
 import { BackButton } from '@/components/BackButton';
 import { Loading } from '@/components/Loading';
@@ -10,7 +9,6 @@ import type { RevenueReport } from '@/types';
 import styles from './page.module.css';
 
 export default function ReportsPage() {
-  const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [period, setPeriod] = useState<'day' | 'week' | 'month' | 'year'>('month');
   const [report, setReport] = useState<RevenueReport | null>(null);

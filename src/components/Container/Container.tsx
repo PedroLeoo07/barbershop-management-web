@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, CSSProperties } from 'react';
+import type { ReactNode, CSSProperties } from 'react';
 import styles from './Container.module.css';
 
 interface ContainerProps {

@@ -86,12 +86,12 @@
     padding: var(--spacing-sm) var(--spacing-lg);
     min-height: 38px;
   }
-  
+
   .medium {
     padding: var(--spacing-md) var(--spacing-xl);
     min-height: 48px;
   }
-  
+
   .large {
     padding: var(--spacing-lg) var(--spacing-2xl);
     font-size: 1rem;
@@ -115,7 +115,7 @@
   background: linear-gradient(135deg, #CD7F32 0%, #D4AF37 50%, #E8C468 100%);
   background-size: 200% auto;
   color: var(--color-primary-graphite);
-  box-shadow: 
+  box-shadow:
     0 4px 16px rgba(212, 175, 55, 0.4),
     0 2px 8px rgba(205, 127, 50, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.4),
@@ -143,7 +143,7 @@
 
 .primary:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 
+  box-shadow:
     0 8px 28px rgba(212, 175, 55, 0.5),
     0 4px 16px rgba(205, 127, 50, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.5),
@@ -157,7 +157,7 @@
 
 .primary:active:not(:disabled) {
   transform: translateY(0);
-  box-shadow: 
+  box-shadow:
     0 2px 8px rgba(212, 175, 55, 0.3),
     inset 0 2px 4px rgba(0, 0, 0, 0.3);
 }
@@ -167,49 +167,117 @@
   height: 300px;
 }
 
-.primary:active:not(:disabled) {
-  transform: translateY(0);
+/* Variante Gradient Avançada */
+.gradient {
+  background: linear-gradient(135deg, #B76E79 0%, #CD7F32 40%, #D4AF37 70%, #E8C468 100%);
+  background-size: 300% auto;
+  color: var(--color-neutral-white);
+  box-shadow:
+    0 6px 20px rgba(212, 175, 55, 0.35),
+    0 3px 10px rgba(205, 127, 50, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.gradient:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow:
+    0 10px 30px rgba(212, 175, 55, 0.45),
+    0 5px 15px rgba(205, 127, 50, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  background-position: 100% 0;
+}
+
+/* Variante Glow */
+.glow {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(205, 127, 50, 0.15));
+  color: var(--color-accent-gold);
+  border: 2px solid var(--color-accent-gold);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.3), inset 0 0 20px rgba(212, 175, 55, 0.1);
+}
+
+.glow:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 30px rgba(212, 175, 55, 0.5),
+    0 8px 20px rgba(212, 175, 55, 0.25),
+    inset 0 0 20px rgba(212, 175, 55, 0.15);
+  border-color: #E8C468;
+  color: #E8C468;
+}
+
+/* Variante Elevated */
+.elevated {
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(20, 20, 20, 0.98) 100%);
+  color: var(--color-accent-gold);
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.6),
+    0 2px 8px rgba(212, 175, 55, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.elevated:hover:not(:disabled) {
+  transform: translateY(-4px);
+  box-shadow:
+    0 12px 36px rgba(0, 0, 0, 0.7),
+    0 4px 16px rgba(212, 175, 55, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  border-color: var(--color-accent-gold);
 }
 
 .secondary {
   background: var(--color-primary-dark-gray);
   color: var(--color-neutral-white);
   border: 1px solid var(--color-neutral-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .secondary:hover:not(:disabled) {
   background: var(--color-primary-medium-gray);
   border-color: var(--color-accent-gold);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+  color: var(--color-accent-gold);
 }
 
 .outline {
   background: transparent;
   color: var(--color-accent-gold);
   border: 2px solid var(--color-accent-gold);
+  transition: all var(--transition-base);
 }
 
 .outline:hover:not(:disabled) {
-  background: var(--color-accent-gold);
-  color: var(--color-primary-graphite);
+  background: rgba(212, 175, 55, 0.15);
+  color: #E8C468;
+  border-color: #E8C468;
+  box-shadow: 0 0 16px rgba(212, 175, 55, 0.3);
+  transform: translateY(-2px);
 }
 
 .ghost {
   background: transparent;
   color: var(--color-neutral-white);
+  border: 1px solid transparent;
+  transition: all var(--transition-fast);
 }
 
 .ghost:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(212, 175, 55, 0.3);
+  color: var(--color-accent-gold);
 }
 
 .danger {
   background: #F44336;
   color: var(--color-neutral-white);
+  box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
 }
 
 .danger:hover:not(:disabled) {
   background: #D32F2F;
   transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(244, 67, 54, 0.4);
 }
 
 /* Full Width */

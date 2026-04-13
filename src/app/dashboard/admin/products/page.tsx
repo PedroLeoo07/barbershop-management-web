@@ -14,7 +14,7 @@ export default function ProductsPage() {
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState<Product[]>([]);
   const [stockAlerts, setStockAlerts] = useState<StockAlert[]>([]);
-  const [showModal, setShowModal] = useState(false);
+  const [_showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     loadData();

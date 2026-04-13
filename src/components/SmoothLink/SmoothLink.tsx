@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ReactNode, MouseEvent } from 'react';
+import type { ReactNode, MouseEvent } from 'react';
 import styles from './SmoothLink.module.css';
 
 interface SmoothLinkProps {

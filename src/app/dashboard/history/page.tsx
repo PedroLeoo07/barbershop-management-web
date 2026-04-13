@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
-import { api } from '@/lib/api';
+import { getAppointments, cancelAppointment } from '@/lib/api';
 import type { Appointment } from '@/types';
 import { Card, CardContent } from '@/components/Card';
 import { Button } from '@/components/Button';
@@ -21,7 +21,7 @@ export default function HistoryPage() {
 
   const loadAppointments = async () => {
     try {
-      const data = await api.getAppointments({ clientId: user!.id });
+      const data = await getAppointments({ clientId: user!.id });
       setAppointments(data);
     } catch (error) {
       console.error('Erro ao carregar agendamentos:', error);
@@ -34,7 +34,7 @@ export default function HistoryPage() {
     if (!confirm('Deseja realmente cancelar este agendamento?')) return;
 
     try {
-      await api.cancelAppointment(id);
+      await cancelAppointment(id, 'Cancelado pelo cliente');
       alert('Agendamento cancelado com sucesso!');
       loadAppointments();
     } catch (error) {

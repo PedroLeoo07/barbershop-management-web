@@ -1,6 +1,7 @@
 'use client';
 
-import { createContext, useContext, ReactNode, useCallback, useMemo } from 'react';
+import { createContext, useContext, useCallback, useMemo } from 'react';
+import type { ReactNode } from 'react';
 
 interface CacheEntry<T> {
   data: T;
@@ -33,7 +34,7 @@ export function CacheProvider({ children }: { children: ReactNode }) {
     return entry.data as T;
   }, []);
 
-  const set = useCallback(<T,>(key: string, data: T, ttl: number = DEFAULT_TTL) => {
+  const set = useCallback(<T,>(key: string, data: T, _ttl: number = DEFAULT_TTL) => {
     cache.set(key, {
       data,
       timestamp: Date.now(),
