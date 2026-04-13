@@ -1,6 +1,6 @@
 import styles from './Badge.module.css';
 
-export type BadgeVariant = 'success' | 'warning' | 'danger' | 'info' | 'neutral';
+export type BadgeVariant = 'success' | 'warning' | 'danger' | 'info' | 'neutral' | 'gold' | 'premium' | 'emerald' | 'sapphire';
 export type BadgeSize = 'small' | 'medium' | 'large';
 
 interface BadgeProps {
@@ -8,16 +8,18 @@ interface BadgeProps {
   variant?: BadgeVariant;
   size?: BadgeSize;
   className?: string;
+  pulse?: boolean;
 }
 
-export function Badge({ 
-  children, 
-  variant = 'neutral', 
+export function Badge({
+  children,
+  variant = 'neutral',
   size = 'medium',
-  className = '' 
+  className = '',
+  pulse = false,
 }: BadgeProps) {
   return (
-    <span className={`${styles.badge} ${styles[variant]} ${styles[size]} ${className}`}>
+    <span className={`${styles.badge} ${styles[variant]} ${styles[size]} ${pulse ? styles.pulse : ''} ${className}`}>
       {children}
     </span>
   );
@@ -30,6 +32,7 @@ export function PaymentStatusBadge({ status }: { status: string }) {
     pending: 'warning',
     cancelled: 'danger',
     refunded: 'info',
+    processing: 'info',
   };
 
   const labels: Record<string, string> = {
@@ -37,10 +40,11 @@ export function PaymentStatusBadge({ status }: { status: string }) {
     pending: 'Pendente',
     cancelled: 'Cancelado',
     refunded: 'Reembolsado',
+    processing: 'Processando',
   };
 
   return (
-    <Badge variant={variants[status] || 'neutral'}>
+    <Badge variant={variants[status] || 'neutral'} pulse={status === 'processing'}>
       {labels[status] || status}
     </Badge>
   );
@@ -53,6 +57,7 @@ export function AppointmentStatusBadge({ status }: { status: string }) {
     'in-progress': 'warning',
     completed: 'success',
     cancelled: 'danger',
+    noshow: 'danger',
   };
 
   const labels: Record<string, string> = {
@@ -61,6 +66,7 @@ export function AppointmentStatusBadge({ status }: { status: string }) {
     'in-progress': 'Em Andamento',
     completed: 'Concluído',
     cancelled: 'Cancelado',
+    noshow: 'Não Compareceu',
   };
 
   return (

@@ -1,0 +1,95 @@
+/* Tooltip Premium */
+
+.tooltip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: help;
+}
+
+.content {
+  position: absolute;
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.98) 0%, rgba(18, 18, 18, 0.98) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.75rem;
+  color: var(--color-neutral-white);
+  white-space: nowrap;
+  z-index: 1070;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), 0 0 12px rgba(212, 175, 55, 0.2);
+  backdrop-filter: blur(12px);
+  animation: fadeIn 0.2s ease-out;
+}
+
+.content.top {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+}
+
+.content.bottom {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+}
+
+.content.left {
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%) translateX(-8px);
+  white-space: normal;
+  max-width: 200px;
+}
+
+.content.right {
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%) translateX(8px);
+  white-space: normal;
+  max-width: 200px;
+}
+
+.arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 4px solid transparent;
+}
+
+.top .arrow {
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-top-color: rgba(26, 26, 26, 0.98);
+}
+
+.bottom .arrow {
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-bottom-color: rgba(26, 26, 26, 0.98);
+}
+
+.left .arrow {
+  right: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-left-color: rgba(26, 26, 26, 0.98);
+}
+
+.right .arrow {
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-right-color: rgba(26, 26, 26, 0.98);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

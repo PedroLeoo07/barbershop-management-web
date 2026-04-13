@@ -1,0 +1,133 @@
+/* Toast Premium */
+
+.container {
+  position: fixed;
+  top: var(--spacing-lg);
+  right: var(--spacing-lg);
+  z-index: 1070;
+  pointer-events: none;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.98) 0%, rgba(18, 18, 18, 0.98) 100%);
+  border: 2px solid;
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-md) var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+  min-width: 300px;
+  max-width: 400px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(20px);
+  animation: slideInRight 0.3s ease-out;
+  pointer-events: auto;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+}
+
+/* Variantes */
+.success {
+  border-color: rgba(76, 175, 80, 0.4);
+  background: linear-gradient(135deg, rgba(45, 80, 22, 0.15) 0%, rgba(26, 26, 26, 0.95) 100%);
+}
+
+.success .icon {
+  color: #7dce82;
+}
+
+.error {
+  border-color: rgba(244, 67, 54, 0.4);
+  background: linear-gradient(135deg, rgba(80, 22, 22, 0.15) 0%, rgba(26, 26, 26, 0.95) 100%);
+}
+
+.error .icon {
+  color: #f48fb1;
+}
+
+.warning {
+  border-color: rgba(255, 193, 7, 0.4);
+  background: linear-gradient(135deg, rgba(80, 70, 22, 0.15) 0%, rgba(26, 26, 26, 0.95) 100%);
+}
+
+.warning .icon {
+  color: #ffc107;
+}
+
+.info {
+  border-color: rgba(33, 150, 243, 0.4);
+  background: linear-gradient(135deg, rgba(22, 50, 80, 0.15) 0%, rgba(26, 26, 26, 0.95) 100%);
+}
+
+.info .icon {
+  color: #64b5f6;
+}
+
+/* Elementos */
+.icon {
+  flex-shrink: 0;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.message {
+  flex: 1;
+  color: var(--color-neutral-white);
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.close {
+  flex-shrink: 0;
+  background: transparent;
+  border: none;
+  color: var(--color-primary-light-gray);
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.close:hover {
+  background: rgba(212, 175, 55, 0.1);
+  color: var(--color-accent-gold);
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .container {
+    left: var(--spacing-sm);
+    right: var(--spacing-sm);
+  }
+
+  .toast {
+    min-width: auto;
+    max-width: calc(100vw - var(--spacing-lg));
+  }
+}

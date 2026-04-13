@@ -1,0 +1,75 @@
+/* Loading Skeleton Premium */
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(212, 175, 55, 0.1) 0%,
+    rgba(212, 175, 55, 0.2) 50%,
+    rgba(212, 175, 55, 0.1) 100%
+  );
+  background-size: 200% 100%;
+  border-radius: var(--radius-lg);
+  animation: shimmer 2s infinite;
+  margin-bottom: var(--spacing-sm);
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.text {
+  height: 1rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.text:last-child {
+  margin-bottom: 0;
+}
+
+.circular {
+  border-radius: 50%;
+}
+
+.rectangular {
+  border-radius: var(--radius-lg);
+}
+
+.card {
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-lg);
+}
+
+/* Card Skeleton */
+.cardSkeleton {
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(20, 20, 20, 0.98) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-lg);
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.image {
+  width: 100%;
+  height: 200px;
+  margin-bottom: var(--spacing-lg);
+}
+
+.content {
+  padding: var(--spacing-md);
+}
+
+.title {
+  margin-bottom: var(--spacing-md);
+}
+
+.text {
+  margin-bottom: var(--spacing-sm);
+}
